@@ -16,7 +16,7 @@
             <text>Jan 28 2017</text>
         </view>
         <text class="post-title">小时候的冰棒儿与雪糕</text>
-        <image class="post-image" src="/images/post/post-4.jpg"></image>
+        <image class="post-image" src="/images/post/post-4.jpg" mode="aspectFill"></image>
         <text class="post-content">冰棒与雪糕绝对不是同一个东西。3到5毛钱的雪糕犹如现在的哈根达斯，而5分1毛的冰棒儿就像现代的老冰棒。时过境迁，...</text>
         <view class="post-like">
             <image src="/images/icon/wx_app_collect.png"></image>
