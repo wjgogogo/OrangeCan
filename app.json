@@ -1,5 +1,9 @@
 {
   "pages": [
     "pages/welcome/welcome"
-  ]
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ecc0a8",
+    "navigationBarTitleText":"OrangeCan"
+  }
 }
