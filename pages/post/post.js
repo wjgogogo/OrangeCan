@@ -1,4 +1,4 @@
-const DBPost=require("../../db/dbPost.js");
+import DBPost from "../../db/dbPost";
 
 Page({
     data: {
@@ -7,7 +7,7 @@ Page({
 
     onLoad: function (options) {
         console.log("onLoad");
-        let dbPost=new DBPost();
+        let dbPost = new DBPost();
         this.setData({postList: dbPost.getAllPostData()});
     },
 

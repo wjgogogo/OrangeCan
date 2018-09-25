@@ -17,4 +17,4 @@ class DBPost {
     }
 }
 
-module.exports = DBPost;
+export  default DBPost;
