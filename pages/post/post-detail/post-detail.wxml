@@ -1,3 +1,12 @@
-<text>
-    Detail
-</text>
+<view class="container">
+    <image class="header-image" src="{{data.postImg}}" mode="aspectFill"></image>
+    <text class="title">{{data.title}}</text>
+    <view class="author-date">
+        <view class="author-box">
+            <image class="avatar" src="{{data.avatar}}"></image>
+            <text class="author">{{data.author}}</text>
+        </view>
+        <text class="date">{{data.dateTime}}</text>
+    </view>
+    <text class="detail">{{data.detail}}</text>
+</view>

@@ -1,10 +1,12 @@
 {
   "pages": [
+    "pages/welcome/welcome",
     "pages/post/post",
-    "pages/post/post-detail/post-detail",
-    "pages/welcome/welcome"
+    "pages/post/post-detail/post-detail"
   ],
   "window": {
-    "navigationBarTitleText": "OrangeCan"
+    "navigationBarTitleText": "OrangeCan",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#4a6141"
   }
 }
