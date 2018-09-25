@@ -1,3 +1,4 @@
+<import src="post-item/post-item"></import>
 <view>
     <swiper indicator-dots="true" autoplay="true" circular="true">
         <swiper-item>
@@ -10,41 +11,7 @@
             <image src="/images/post/post-3@text.jpg"></image>
         </swiper-item>
     </swiper>
-    <view class="post-container">
-        <view class="post-author-date">
-            <image src="/images/avatar/avatar-3.png"></image>
-            <text>Jan 08 2018</text>
-        </view>
-        <text class="post-title">记忆中的春节</text>
-        <image class="post-image" src="/images/post/post-1.jpg" mode="aspectFill"></image>
-        <text class="post-content">年少时，有几样东西，是春节里必不可少的：烟花，新衣，凉菜，压岁钱，饺子。年分大小年，有的地方是腊月二十三过小年，有些地方是二十四，...</text>
-        <view class="post-like">
-            <image src="/images/icon/wx_app_collect.png"></image>
-            <text>108</text>
-            <image src="/images/icon/wx_app_view.png"></image>
-            <text>92</text>
-            <image src="/images/icon/wx_app_message.png"></image>
-            <text>7</text>
-        </view>
-    </view>
-
     <block wx:for="{{postList}}" wx:for-item="item" wx:for-index="index">
-        <view class="post-container">
-            <view class="post-author-date">
-                <image src="{{item.avatar}}"></image>
-                <text>{{item.date}}</text>
-            </view>
-            <text class="post-title">{{item.title}}</text>
-            <image class="post-image" src="{{item.postImg}}" mode="aspectFill"></image>
-            <text class="post-content">{{item.content}}</text>
-            <view class="post-like">
-                <image src="/images/icon/wx_app_collect.png"></image>
-                <text>{{item.collectionNum}}</text>
-                <image src="/images/icon/wx_app_view.png"></image>
-                <text>{{item.readingNum}}</text>
-                <image src="/images/icon/wx_app_message.png"></image>
-                <text>{{item.commentNum}}</text>
-            </view>
-        </view>
+        <template is="postItemTpl" data="{{item}}"></template>
     </block>
 </view>
