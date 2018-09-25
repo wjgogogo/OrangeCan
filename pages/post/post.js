@@ -1,4 +1,5 @@
-const data = require("../../data/postData.js");
+const DBPost=require("../../db/dbPost.js");
+
 Page({
     data: {
         title: "post"
@@ -6,7 +7,8 @@ Page({
 
     onLoad: function (options) {
         console.log("onLoad");
-        this.setData({postList: data.postList});
+        let dbPost=new DBPost();
+        this.setData({postList: dbPost.getAllPostData()});
     },
 
     onReady: function () {
