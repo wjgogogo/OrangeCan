@@ -12,6 +12,6 @@
         </swiper-item>
     </swiper>
     <block wx:for="{{postList}}" wx:for-item="item" wx:for-index="index">
-        <template is="postItemTpl" data="{{item}}"></template>
+        <template is="postItemTpl" data="{{...item}}"></template>
     </block>
 </view>
