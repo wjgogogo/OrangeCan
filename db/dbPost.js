@@ -30,6 +30,10 @@ class DBPost {
         return this.updatePostData('collect');
     }
 
+    up() {
+        return this.updatePostData('up');
+    }
+
     updatePostData(category) {
         let [itemData, allData] = [this.getPostItemById(), this.getAllPostData()];
         let {data, index} = itemData;
@@ -41,6 +45,15 @@ class DBPost {
                 } else {
                     data.collectionNum--;
                     data.collectionStatus = false;
+                }
+                break;
+            case 'up':
+                if (!data.upStatus) {
+                    data.upNum++;
+                    data.upStatus = true;
+                } else {
+                    data.upNum--;
+                    data.upStatus=false;
                 }
                 break;
             default:

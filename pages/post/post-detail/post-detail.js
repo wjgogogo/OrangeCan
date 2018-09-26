@@ -19,5 +19,12 @@ Page({
         wx.showToast({
             title: data.collectionStatus?"收藏成功":"取消收藏",
         })
-    }
+    },
+    onUpTap:function () {
+        let data=this.dbPost.up();
+        this.setData({
+            'data.upStatus':data.upStatus,
+            'data.upNum':data.upNum
+        });
+    },
 });
