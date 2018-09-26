@@ -1,6 +1,9 @@
 import DBPost from "../../../db/dbPost";
 
 Page({
+    data:{
+        useKeyboardFlag:false
+    },
     onLoad: function (options) {
         const postId = options.id;
         this.dbPost = new DBPost(postId);
@@ -14,6 +17,11 @@ Page({
         wx.previewImage({
             urls:imgs,
             current:imgs[imgIdx]
+        })
+    },
+    switchInputType:function () {
+        this.setData({
+            useKeyboardFlag:!this.data.useKeyboardFlag
         })
     }
 
