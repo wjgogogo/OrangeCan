@@ -1,0 +1,34 @@
+<view class="comment-detail-box">
+    <view class="comment-main-box">
+        <view class="comment-title">评论.........(共{{comments.length}}条)</view>
+        <block wx:for="{{comments}}" wx:for-item="comment" wx:key="index">
+            <view class="comment-item">
+                <view class="comment-item-header">
+                    <view class="left-img">
+                        <image src="{{comment.avatar}}"></image>
+                    </view>
+                    <view class="right-user">
+                        <text class="user-name">{{comment.username}}</text>
+                    </view>
+                </view>
+                <view class="comment-body">
+                    <view class="comment-txt" wx:if="{{comment.content.txt}}">
+                        <text>{{comment.content.txt}}</text>
+                    </view>
+                    <view class="comment-voice" wx:if="{{comment.content.audio && comment.content.audio.url}}">
+                        <view class="comment-voice-item" data-url="{{comment.content.audio.url}}" catchtap="playAudio">
+                            <image src="/images/icon/wx_app_voice.png" class="voice-play"></image>
+                            <text>{{comment.content.audio.timeLen}}</text>
+                        </view>
+                    </view>
+                    <view class="comment-img" wx:if="{{comment.content.img.length!=0}}">
+                        <block wx:for="{{comment.content.img}}">
+                            <image src="{{item}}" mode="aspectFill"></image>
+                        </block>
+                    </view>
+                </view>
+                <view class="comment-time">{{comment.create_time}}</view>
+            </view>
+        </block>
+    </view>
+</view>
