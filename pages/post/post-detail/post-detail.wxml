@@ -10,3 +10,17 @@
     </view>
     <text class="detail">{{data.detail}}</text>
 </view>
+<view class="tool">
+    <view class="tool-item" catchtap="onUpTap" data-post-id="{{data.postId}}">
+        <image src="/images/icon/wx_app_like.png"></image>
+        <text>{{data.upNum}}</text>
+    </view>
+    <view class="tool-item comment" catchtap="onCommentTap" data-post-id="{{data.postId}}">
+        <image src="/images/icon/wx_app_message.png"></image>
+        <text>{{data.commentNum}}</text>
+    </view>
+    <view class="tool-item" catchtap="onCollectionTap" data-post-id="{{data.postId}}">
+        <image src="/images/icon/wx_app_collect.png"></image>
+        <text>{{data.collectionNum}}</text>
+    </view>
+</view>
