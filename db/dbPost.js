@@ -25,6 +25,31 @@ class DBPost {
             data: dataList[index]
         }
     }
+
+    collect() {
+        return this.updatePostData('collect');
+    }
+
+    updatePostData(category) {
+        let [itemData, allData] = [this.getPostItemById(), this.getAllPostData()];
+        let {data, index} = itemData;
+        switch (category) {
+            case 'collect':
+                if (!data.collectionStatus) {
+                    data.collectionNum++;
+                    data.collectionStatus = true;
+                } else {
+                    data.collectionNum--;
+                    data.collectionStatus = false;
+                }
+                break;
+            default:
+                break;
+        }
+        allData[index] = data;
+        this.execSetStorageSync(allData);
+        return data;
+    }
 }
 
 export default DBPost;
