@@ -23,12 +23,32 @@
                     </view>
                     <view class="comment-img" wx:if="{{comment.content.img.length!=0}}">
                         <block wx:for="{{comment.content.img}}" wx:for-index="idx">
-                            <image src="{{item}}" mode="aspectFill" catchtap="previewImg" data-img-idx="{{idx}}" data-comment-idx="{{index}}"></image>
+                            <image src="{{item}}" mode="aspectFill" catchtap="previewImg" data-img-idx="{{idx}}"
+                                   data-comment-idx="{{index}}"></image>
                         </block>
                     </view>
                 </view>
                 <view class="comment-time">{{comment.create_time}}</view>
             </view>
         </block>
+    </view>
+
+    <view class="input-box">
+        <view class="send-msg-box">
+            <view class="input-item" hidden="{{useKeyboardFlag}}">
+                <image class="comment-icon keyboard-icon" src="/images/icon/wx_app_keyboard.png"
+                       catchtap="switchInputType"></image>
+                <input class="input speak-input {{recodingClass}}" value="按住说话" disabled="disabled"
+                       catchtouchstart="recordStart" catchtouchend="recordEnd" />
+            </view>
+            <view hidden="{{!useKeyboardFlag}}" class="input-item">
+                <image class="comment-icon speak-icon" src="/images/icon/wx_app_speak.png"
+                       catchtap="switchInputType"></image>
+                <input class="input keyboard-input" value="{{keyboardInputValue}}" bindconfirm="submitComment"
+                       bindinput="bindCommentInput" placeholder="说点什么吧……"/>
+            </view>
+            <image class="comment-icon add-icon" src="/images/icon/wx_app_add.png" catchtap="sendMoreMsg"></image>
+            <view class="submit-btn" catchtap="submitComment">发送</view>
+        </view>
     </view>
 </view>
