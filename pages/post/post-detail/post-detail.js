@@ -10,21 +10,27 @@ Page({
     onReady: function () {
         wx.setNavigationBarTitle({title: this.data.data.title})
     },
-    onCollectionTap:function () {
-        let data=this.dbPost.collect();
+    onCollectionTap: function () {
+        let data = this.dbPost.collect();
         this.setData({
-            'data.collectionStatus':data.collectionStatus,
-            'data.collectionNum':data.collectionNum
+            'data.collectionStatus': data.collectionStatus,
+            'data.collectionNum': data.collectionNum
         });
         wx.showToast({
-            title: data.collectionStatus?"收藏成功":"取消收藏",
+            title: data.collectionStatus ? "收藏成功" : "取消收藏",
         })
     },
-    onUpTap:function () {
-        let data=this.dbPost.up();
+    onUpTap: function () {
+        let data = this.dbPost.up();
         this.setData({
-            'data.upStatus':data.upStatus,
-            'data.upNum':data.upNum
+            'data.upStatus': data.upStatus,
+            'data.upNum': data.upNum
         });
     },
+    onCommentTap: function (event) {
+        const id = event.currentTarget.dataset.postId;
+        wx.navigateTo({
+            url: `../post-comment/post-comment?id=${id}`
+        })
+    }
 });

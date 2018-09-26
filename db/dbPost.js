@@ -1,3 +1,5 @@
+import {getDiffTime} from "../util/util"
+
 class DBPost {
     constructor(postId = 0) {
         this.storageKeyName = 'postList';
@@ -24,6 +26,17 @@ class DBPost {
             index,
             data: dataList[index]
         }
+    }
+
+    getCommentData() {
+        let comments = this.getPostItemById().data.comments;
+
+        comments.sort((value1, value2) => parseFloat(value2.create_time) - parseFloat(value1.create_time))
+        comments.forEach(comment => {
+            comment.create_time = getDiffTime(comment.create_time, true);
+        });
+        console.log(comments)
+        return comments;
     }
 
     collect() {
@@ -53,7 +66,7 @@ class DBPost {
                     data.upStatus = true;
                 } else {
                     data.upNum--;
-                    data.upStatus=false;
+                    data.upStatus = false;
                 }
                 break;
             default:
