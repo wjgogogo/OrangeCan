@@ -3,7 +3,8 @@ import DBPost from "../../../db/dbPost";
 Page({
     data: {
         useKeyboardFlag: true,
-        keyboardInputValue: "",
+        sendMoreMsgFlag: false,
+        keyboardInputValue: ""
     },
     onLoad: function (options) {
         const postId = options.id;
@@ -41,7 +42,6 @@ Page({
         if (!data.content.txt) {
             return;
         }
-
         this.dbPost.newComment(data);
         this.showCommentSuccessToast();
         this.bindCommentData();
@@ -61,6 +61,11 @@ Page({
     resetAllDefaultStatus: function () {
         this.setData({
             keyboardInputValue: ""
+        })
+    },
+    sendMoreMsg: function () {
+        this.setData({
+            sendMoreMsgFlag: !this.data.sendMoreMsgFlag
         })
     }
 });
