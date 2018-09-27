@@ -30,12 +30,10 @@ class DBPost {
 
     getCommentData() {
         let comments = this.getPostItemById().data.comments;
-
         comments.sort((value1, value2) => parseFloat(value2.create_time) - parseFloat(value1.create_time))
         comments.forEach(comment => {
             comment.create_time = getDiffTime(comment.create_time, true);
         });
-        console.log(comments)
         return comments;
     }
 
@@ -47,7 +45,11 @@ class DBPost {
         return this.updatePostData('up');
     }
 
-    updatePostData(category) {
+    newComment(data){
+        this.updatePostData('comment',data);
+    }
+
+    updatePostData(category,comment) {
         let [itemData, allData] = [this.getPostItemById(), this.getAllPostData()];
         let {data, index} = itemData;
         switch (category) {
@@ -68,6 +70,10 @@ class DBPost {
                     data.upNum--;
                     data.upStatus = false;
                 }
+                break;
+            case 'comment':
+                data.comments.push(comment);
+                data.commentNum++;
                 break;
             default:
                 break;

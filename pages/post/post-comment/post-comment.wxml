@@ -22,7 +22,7 @@
                         </view>
                     </view>
                     <view class="comment-img" wx:if="{{comment.content.img.length!=0}}">
-                        <block wx:for="{{comment.content.img}}" wx:for-index="idx">
+                        <block wx:for="{{comment.content.img}}" wx:for-index="idx" wx:key="idx">
                             <image src="{{item}}" mode="aspectFill" catchtap="previewImg" data-img-idx="{{idx}}"
                                    data-comment-idx="{{index}}"></image>
                         </block>
