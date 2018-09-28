@@ -14,13 +14,6 @@
 	"libVersion": "2.3.0",
 	"appid": "wxca216a351f7208ff",
 	"projectname": "OrangeCan",
-	"svr": "/",
-	"client": "/",
-	"qcloudRoot": "/",
-	"miniprogramRoot": "/",
-	"cloudfunctionRoot": "/",
-	"jsserverRoot": "/",
-	"pluginRoot": "/",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
