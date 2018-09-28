@@ -7,8 +7,8 @@ Page({
         sendMoreMsgFlag: false,
         keyboardInputValue: "",
         chooseFiles: [],
-        deleteIndex:-1,
-        currentAudio:""
+        deleteIndex: -1,
+        currentAudio: ""
     },
     onLoad: function (options) {
         const postId = options.id;
@@ -40,11 +40,11 @@ Page({
             create_time: new Date().getTime() / 1000,
             content: {
                 txt: this.data.keyboardInputValue,
-                img:this.data.chooseFiles
+                img: this.data.chooseFiles
             }
         };
 
-        if (!data.content.txt && data.content.img.length===0) {
+        if (!data.content.txt && data.content.img.length === 0) {
             return;
         }
         this.dbPost.newComment(data);
@@ -66,8 +66,8 @@ Page({
     resetAllDefaultStatus: function () {
         this.setData({
             keyboardInputValue: "",
-            chooseFiles:[],
-            sendMoreMsgFlag:false
+            chooseFiles: [],
+            sendMoreMsgFlag: false
         })
     },
     sendMoreMsg: function () {
@@ -81,61 +81,61 @@ Page({
             return;
         }
 
-        const sourceType=[event.currentTarget.dataset.category];
-        const _this=this;
+        const sourceType = [event.currentTarget.dataset.category];
+        const _this = this;
         wx.chooseImage({
-            count:leftCount,
-            source:sourceType,
-            success:function (res) {
+            count: leftCount,
+            source: sourceType,
+            success: function (res) {
                 _this.setData({
                     chooseFiles: _this.data.chooseFiles.concat(res.tempFilePaths)
                 })
             }
         })
     },
-    deleteImage:function (event) {
-        const idx=event.currentTarget.dataset.idx;
-        this.data.chooseFiles.splice(idx,1);
+    deleteImage: function (event) {
+        const idx = event.currentTarget.dataset.idx;
+        this.data.chooseFiles.splice(idx, 1);
         this.setData({
-            deleteIndex:idx
+            deleteIndex: idx
         });
-        const _this=this;
+        const _this = this;
         setTimeout(function () {
             _this.setData({
-                deleteIndex:-1,
-                chooseFiles:_this.data.chooseFiles
+                deleteIndex: -1,
+                chooseFiles: _this.data.chooseFiles
             })
-        },500)
+        }, 500)
 
     },
-    recordStart:function () {
-        let _this=this;
+    recordStart: function () {
+        let _this = this;
         this.setData({
-            recodingClass:'recoding'
+            recodingClass: 'recoding'
         });
-        this.startTime=new Date();
+        this.startTime = new Date();
         wx.startRecord({
-            success:function (res) {
-                let diff=Math.ceil((_this.endTime-_this.startTime)/1000);
-                _this.submitVoiceComment({url:res.tempFilePath,timeLen:diff})
+            success: function (res) {
+                let diff = Math.ceil((_this.endTime - _this.startTime) / 1000);
+                _this.submitVoiceComment({url: res.tempFilePath, timeLen: diff})
             }
         })
     },
-    recordEnd:function () {
+    recordEnd: function () {
         this.setData({
-            recodingClass:''
+            recodingClass: ''
         });
-        this.endTime=new Date();
+        this.endTime = new Date();
         wx.stopRecord();
     },
-    submitVoiceComment:function (audio) {
+    submitVoiceComment: function (audio) {
         let data = {
             username: '青石',
             avatar: '/images/avatar/avatar-3.png',
             create_time: new Date().getTime() / 1000,
             content: {
                 txt: "",
-                img:[],
+                img: [],
                 audio
             }
         };
@@ -143,18 +143,19 @@ Page({
         this.showCommentSuccessToast();
         this.bindCommentData();
     },
-    playAudio:function (event) {
-        let url=event.currentTarget.dataset.url;
-        let _this=this;
-        if(url===this.data.currentAudio){
+    playAudio: function (event) {
+        let url = event.currentTarget.dataset.url;
+        let _this = this;
+        if (url === this.data.currentAudio) {
             wx.pauseVoice();
+            this.data.currentAudio = "";
         }
-        else{
-            this.data.currentAudio=url;
+        else {
+            this.data.currentAudio = url;
             wx.playVoice({
-                filePath:url,
-                complete:function () {
-                    _this.data.currentAudio=""
+                filePath: url,
+                complete: function () {
+                    _this.data.currentAudio = ""
                 }
             })
         }
