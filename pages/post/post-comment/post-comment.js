@@ -1,10 +1,12 @@
 import DBPost from "../../../db/dbPost";
 
+const MAX_IMG_COUNT = 3;
 Page({
     data: {
         useKeyboardFlag: true,
         sendMoreMsgFlag: false,
-        keyboardInputValue: ""
+        keyboardInputValue: "",
+        chooseFiles: []
     },
     onLoad: function (options) {
         const postId = options.id;
@@ -66,6 +68,31 @@ Page({
     sendMoreMsg: function () {
         this.setData({
             sendMoreMsgFlag: !this.data.sendMoreMsgFlag
+        })
+    },
+    chooseImage: function (event) {
+        let leftCount = MAX_IMG_COUNT - this.data.chooseFiles.length;
+        if (leftCount <= 0) {
+            return;
+        }
+
+        const sourceType=[event.currentTarget.dataset.category];
+        const _this=this;
+        wx.chooseImage({
+            count:leftCount,
+            source:sourceType,
+            success:function (res) {
+                _this.setData({
+                    chooseFiles: _this.data.chooseFiles.concat(res.tempFilePaths)
+                })
+            }
+        })
+    },
+    deleteImage:function (event) {
+        const idx=event.currentTarget.dataset.idx;
+        this.data.chooseFiles.splice(idx,1);
+        this.setData({
+            chooseFiles:this.data.chooseFiles
         })
     }
 });

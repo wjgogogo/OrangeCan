@@ -6,7 +6,7 @@
                 <view class="comment-item-header">
                     <view class="left-img">
                         <image src="{{comment.avatar}}"></image>
-                    </view>
+                  +  </view>
                     <view class="right-user">
                         <text class="user-name">{{comment.username}}</text>
                     </view>
