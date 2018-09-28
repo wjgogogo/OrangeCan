@@ -3,11 +3,12 @@ import DBPost from "../../../db/dbPost";
 const MAX_IMG_COUNT = 3;
 Page({
     data: {
-        useKeyboardFlag: true,
+        useKeyboardFlag: false,
         sendMoreMsgFlag: false,
         keyboardInputValue: "",
         chooseFiles: [],
         deleteIndex:-1,
+        currentAudio:""
     },
     onLoad: function (options) {
         const postId = options.id;
@@ -106,6 +107,59 @@ Page({
             })
         },500)
 
+    },
+    recordStart:function () {
+        let _this=this;
+        this.setData({
+            recodingClass:'recoding'
+        });
+        this.startTime=new Date();
+        wx.startRecord({
+            success:function (res) {
+                let diff=Math.ceil((_this.endTime-_this.startTime)/1000);
+                _this.submitVoiceComment({url:res.tempFilePath,timeLen:diff})
+            }
+        })
+    },
+    recordEnd:function () {
+        this.setData({
+            recodingClass:''
+        });
+        this.endTime=new Date();
+        wx.stopRecord();
+    },
+    submitVoiceComment:function (audio) {
+        let data = {
+            username: '青石',
+            avatar: '/images/avatar/avatar-3.png',
+            create_time: new Date().getTime() / 1000,
+            content: {
+                txt: "",
+                img:[],
+                audio
+            }
+        };
+        this.dbPost.newComment(data);
+        this.showCommentSuccessToast();
+        this.bindCommentData();
+    },
+    playAudio:function (event) {
+        let url=event.currentTarget.dataset.url;
+        let _this=this;
+        if(url===this.data.currentAudio){
+            wx.pauseVoice();
+        }
+        else{
+            this.data.currentAudio=url;
+            wx.playVoice({
+                filePath:url,
+                complete:function () {
+                    _this.data.currentAudio=""
+                }
+            })
+        }
     }
+
+
 });
 
