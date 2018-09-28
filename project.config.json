@@ -35,7 +35,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -48,6 +48,11 @@
 					"name": "post-comment",
 					"pathName": "pages/post/post-comment/post-comment",
 					"query": "id=2"
+				},
+				{
+					"id": -1,
+					"name": "post",
+					"pathName": "pages/post/post"
 				}
 			]
 		}

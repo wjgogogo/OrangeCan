@@ -5,6 +5,7 @@ Page({
         const postId = options.id;
         this.dbPost = new DBPost(postId);
         this.setData({...this.dbPost.getPostItemById()})
+        this.addReadingTimes();
     },
 
     onReady: function () {
@@ -32,5 +33,8 @@ Page({
         wx.navigateTo({
             url: `../post-comment/post-comment?id=${id}`
         })
+    },
+    addReadingTimes:function () {
+        this.dbPost.addReadingTimes();
     }
 });

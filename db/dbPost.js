@@ -75,12 +75,18 @@ class DBPost {
                 data.comments.push(comment);
                 data.commentNum++;
                 break;
+            case 'reading':
+                data.readingNum++;
+                break;
             default:
                 break;
         }
         allData[index] = data;
         this.execSetStorageSync(allData);
         return data;
+    }
+    addReadingTimes(){
+        this.updatePostData('reading')
     }
 }
 

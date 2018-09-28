@@ -1,7 +1,7 @@
 import DBPost from "../../db/dbPost";
 
 Page({
-    onLoad: function (options) {
+    onShow:function(){
         let dbPost = new DBPost();
         this.setData({postList: dbPost.getAllPostData()});
     },
