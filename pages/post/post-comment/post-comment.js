@@ -39,10 +39,11 @@ Page({
             create_time: new Date().getTime() / 1000,
             content: {
                 txt: this.data.keyboardInputValue,
+                img:this.data.chooseFiles
             }
         };
 
-        if (!data.content.txt) {
+        if (!data.content.txt && data.content.img.length===0) {
             return;
         }
         this.dbPost.newComment(data);
@@ -63,7 +64,9 @@ Page({
     },
     resetAllDefaultStatus: function () {
         this.setData({
-            keyboardInputValue: ""
+            keyboardInputValue: "",
+            chooseFiles:[],
+            sendMoreMsgFlag:false
         })
     },
     sendMoreMsg: function () {
