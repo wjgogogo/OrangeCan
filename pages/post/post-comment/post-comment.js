@@ -6,7 +6,8 @@ Page({
         useKeyboardFlag: true,
         sendMoreMsgFlag: false,
         keyboardInputValue: "",
-        chooseFiles: []
+        chooseFiles: [],
+        deleteIndex:-1,
     },
     onLoad: function (options) {
         const postId = options.id;
@@ -92,8 +93,16 @@ Page({
         const idx=event.currentTarget.dataset.idx;
         this.data.chooseFiles.splice(idx,1);
         this.setData({
-            chooseFiles:this.data.chooseFiles
-        })
+            deleteIndex:idx
+        });
+        const _this=this;
+        setTimeout(function () {
+            _this.setData({
+                deleteIndex:-1,
+                chooseFiles:_this.data.chooseFiles
+            })
+        },500)
+
     }
 });
 
