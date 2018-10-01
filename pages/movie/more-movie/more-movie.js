@@ -16,6 +16,7 @@ Page({
      */
     onLoad: function (options) {
         let category = options.category;
+        this.data.navigateTitle = category;
         let dataUrl = app.globalData.doubanBase;
         switch (category) {
             case "正在热映":
@@ -32,14 +33,16 @@ Page({
             requestUrl: dataUrl
         });
         http(dataUrl, this.processDoubanData);
-        wx.showNavigationBarLoading();
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        wx.setNavigationBarTitle({
+            title: this.data.navigateTitle
+        });
+        wx.showNavigationBarLoading();
     },
 
     /**
@@ -111,10 +114,10 @@ Page({
         wx.stopPullDownRefresh();
         wx.hideNavigationBarLoading();
     },
-    onMovieTap:function (event) {
-        const movieId=event.currentTarget.dataset.movieId;
+    onMovieTap: function (event) {
+        const movieId = event.currentTarget.dataset.movieId;
         wx.navigateTo({
-            url:`../movie-detail/movie-detail?id=${movieId}`
+            url: `../movie-detail/movie-detail?id=${movieId}`
         })
     }
 

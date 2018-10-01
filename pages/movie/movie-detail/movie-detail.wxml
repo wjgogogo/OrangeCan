@@ -1,5 +1,5 @@
 <import src="../stars/stars-tpl.wxml"/>
-<view class="container">
+<view class="container" wx:if="{{!loading}}">
     <image class="head-img" src="{{movie.movieImg}}" mode="aspectFill"/>
     <view class="head-img-hover">
         <text class="main-title">{{movie.title}}</text>

@@ -7,6 +7,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        loading:true,
         movie: {}
     },
 
@@ -16,14 +17,17 @@ Page({
     onLoad: function (options) {
         const movieId = options.id;
         const url = `${app.globalData.doubanBase}/v2/movie/subject/${movieId}`;
-        http(url,this.processDoubanData);
+        http(url, this.processDoubanData);
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        wx.setNavigationBarTitle({
+            title: ""
+        });
+        wx.showNavigationBarLoading();
     },
 
     /**
@@ -72,17 +76,17 @@ Page({
         if (!data) {
             return;
         }
-        let director={
-            avatar:"",
-            name:"",
-            id:""
+        let director = {
+            avatar: "",
+            name: "",
+            id: ""
         };
         if (data.directors[0] != null) {
             if (data.directors[0].avatars != null) {
-                director.avatar=data.directors[0].avatars.large
+                director.avatar = data.directors[0].avatars.large
             }
-            director.name=data.directors[0].name;
-            director.id=data.directors[0].id;
+            director.name = data.directors[0].name;
+            director.id = data.directors[0].id;
         }
         let movie = {
             movieImg: data.images ? data.images.large : "",
@@ -101,10 +105,21 @@ Page({
             summary: data.summary
         };
         this.setData({
-            movie:movie
+            movie: movie
         });
         wx.setNavigationBarTitle({
             title: data.title
         });
+        wx.hideNavigationBarLoading();
+        this.setData({
+            loading:false
+        })
+    },
+    viewMoviePostImg: function (event) {
+        const src = event.currentTarget.dataset.src;
+        wx.previewImage({
+            current: src,
+            urls: [src]
+        })
     }
-})
+});
