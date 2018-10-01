@@ -1,6 +1,13 @@
 <import src="movie-list/movie-list-tpl.wxml"></import>
+<import src="movie-grid/movie-grid-tpl.wxml"></import>
 
-<view class="container">
+<view class="search">
+    <icon type="search" class="search-img" size="13" color="#405f80"></icon>
+    <input type="text" placeholder="乘风破浪、西游伏妖篇" palceholder-class="placeholder" bindfocus="onBindFocus"
+    bindconfirm="onBindConfirm" value="{{inputValue}}"/>
+    <image wx:if="{{searchPanelShow}}" src="/images/icon/wx_app_xx.png" class="xx-img" catchtap="onCancelImgTap"></image>
+</view>
+<view class="container" wx:if="{{containerShow}}">
     <view class="movies-template">
         <template is="movieListTpl" data="{{...inTheaters}}"></template>
     </view>
@@ -12,4 +19,8 @@
     <view class="movies-template">
         <template is="movieListTpl" data="{{...top250}}"></template>
     </view>
+</view>
+
+<view class="search-panel" wx:if="{{searchPanelShow}}">
+    <template is="movieGridTpl" data="{{...searchResult}}"></template>
 </view>
