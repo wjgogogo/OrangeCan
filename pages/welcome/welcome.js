@@ -1,6 +1,6 @@
 Page({
     onTapJump: function (event) {
-        wx.redirectTo({
+        wx.switchTab({
             url: "../post/post"
         })
     }
