@@ -2,14 +2,14 @@
 
 <view class="container">
     <view class="movies-template">
-        <template is="movieTpl" data="{{...inTheaters}}"></template>
+        <template is="movieListTpl" data="{{...inTheaters}}"></template>
     </view>
 
     <view class="movies-template">
-        <template is="movieTpl" data="{{...comingSoon}}"></template>
+        <template is="movieListTpl" data="{{...comingSoon}}"></template>
     </view>
 
     <view class="movies-template">
-        <template is="movieTpl" data="{{...top250}}"></template>
+        <template is="movieListTpl" data="{{...top250}}"></template>
     </view>
 </view>

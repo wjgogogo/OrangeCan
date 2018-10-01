@@ -1,66 +1,89 @@
-// pages/movie/movie.js
+const app = getApp();
+const inTheatersUrl = `${app.globalData.doubanBase}/v2/movie/in_theaters?star=0&count=3`;
+const comingSoonUrl = `${app.globalData.doubanBase}/v2/movie/coming_soon?star=0&count=3`;
+const top250Url = `${app.globalData.doubanBase}/v2/movie/top250?star=0&count=3`;
 Page({
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        inTheaters: {},
+        comingSoon: {},
+        top250: {}
+    },
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+        this.getMovieListData(inTheatersUrl, "inTheaters", "正在热映");
+        this.getMovieListData(comingSoonUrl, "comingSoon", "即将上映");
+        this.getMovieListData(top250Url, "top250", "豆瓣Top250");
+    },
 
-  },
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+    },
 
-  },
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+    },
 
-  },
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+    },
 
-  },
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+    },
 
-  },
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+    },
 
-  },
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function () {
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+    },
 
-  },
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+    },
+    getMovieListData: function (url, settedKey, categoryTitle) {
+        let _this=this;
+        wx.request({
+            url,
+            method:'GET',
+            header:{
+                "content-type":"json"
+            },
+            success:function (res) {
+                console.log(res)
+                // _this.processDoubanData(res.data,settedKey,categoryTitle)
+            },
+            fail:function (error) {
+              console.log(error)
+            }
+        })
+    }
 })
