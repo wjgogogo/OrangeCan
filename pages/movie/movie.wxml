@@ -1,0 +1,15 @@
+<import src="movie-list/movie-list-tpl.wxml"></import>
+
+<view class="container">
+    <view class="movies-template">
+        <template is="movieTpl" data="{{...inTheaters}}"></template>
+    </view>
+
+    <view class="movies-template">
+        <template is="movieTpl" data="{{...comingSoon}}"></template>
+    </view>
+
+    <view class="movies-template">
+        <template is="movieTpl" data="{{...top250}}"></template>
+    </view>
+</view>

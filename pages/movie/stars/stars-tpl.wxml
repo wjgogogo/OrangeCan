@@ -1,0 +1,12 @@
+<template name="starsTpl">
+    <view class="stars-container">
+        <view class="stars">
+            <block wx:for="{{stars}}">
+                <image wx:if="{{item===1}}" src="/images/icon/wx_app_star.png"></image>
+                <image wx:elif="{{item===0.5}}" src="/images/icon/wx_app_star@half.png"></image>
+                <image wx:else="{{item===0}}" src="/images/icon/wx_app_star@none.png"></image>
+            </block>
+        </view>
+        <text class="star-score">{{score}}</text>
+    </view>
+</template>
