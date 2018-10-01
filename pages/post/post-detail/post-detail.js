@@ -56,6 +56,11 @@ Page({
                 isPlayingMusic:true
             })
         }
-
+    },
+    onShareAppMessage:function () {
+        return {
+            title:this.data.data.title,
+            path:'/pages/post/post-detail/post-detail'
+        }
     }
 });
