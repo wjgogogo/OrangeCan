@@ -1,6 +1,9 @@
 import DBPost from "../../../db/dbPost";
 
 Page({
+    data: {
+        isPlayingMusic: false
+    },
     onLoad: function (options) {
         const postId = options.id;
         this.dbPost = new DBPost(postId);
@@ -34,7 +37,25 @@ Page({
             url: `../post-comment/post-comment?id=${id}`
         })
     },
-    addReadingTimes:function () {
+    addReadingTimes: function () {
         this.dbPost.addReadingTimes();
+    },
+    onMusicTap: function (event) {
+        if (this.data.isPlayingMusic) {
+            wx.pauseBackgroundAudio();
+            this.setData({
+                isPlayingMusic: false
+            });
+        } else {
+            wx.playBackgroundAudio({
+                dataUrl:this.data.data.music.url,
+                title:this.data.data.music.title,
+                coverImg:this.data.data.music.coverImg
+            })
+            this.setData({
+                isPlayingMusic:true
+            })
+        }
+
     }
 });

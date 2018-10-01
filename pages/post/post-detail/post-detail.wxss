@@ -8,6 +8,15 @@
     height: 750rpx;
 }
 
+.music{
+    width: 110rpx;
+    height: 110rpx;
+    position: absolute;
+    left: 50%;
+    margin-left: -51rpx;
+    top: 320rpx;
+    opacity: 0.9;
+}
 .title{
     font-size: 20px;
     margin: 30rpx;
