@@ -4,12 +4,14 @@
     "pages/post/post",
     "pages/post/post-detail/post-detail",
     "pages/post/post-comment/post-comment",
-    "pages/movie/movie"
+    "pages/movie/movie",
+    "pages/movie/more-movie/more-movie"
   ],
   "window": {
     "navigationBarTitleText": "OrangeCan",
     "navigationBarTextStyle": "white",
-    "navigationBarBackgroundColor": "#4a6141"
+    "navigationBarBackgroundColor": "#4a6141",
+    "backgroundColor":"#4a6141"
   },
   "tabBar": {
     "borderStyle": "white",
