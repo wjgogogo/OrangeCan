@@ -17,7 +17,6 @@ Page({
     onLoad: function (options) {
         let category = options.category;
         let dataUrl = app.globalData.doubanBase;
-        console.log(category)
         switch (category) {
             case "正在热映":
                 dataUrl += "/v2/movie/in_theaters";

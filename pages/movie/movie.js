@@ -83,7 +83,6 @@ Page({
                 "content-type": "json"
             },
             success: function (res) {
-                console.log(res);
                 _this.processDoubanData(res.data, settedKey, categoryTitle)
             },
             fail: function (error) {
