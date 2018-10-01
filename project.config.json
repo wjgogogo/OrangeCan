@@ -62,10 +62,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "more-movie",
 					"pathName": "pages/movie/more-movie/more-movie",
-					"query": "category=正在热映"
+					"query": "category=豆瓣Top250"
 				}
 			]
 		}
