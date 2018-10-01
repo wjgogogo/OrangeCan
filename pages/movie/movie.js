@@ -1,3 +1,4 @@
+import {convertToStarsArray} from "../../util/util";
 const app = getApp();
 const inTheatersUrl = `${app.globalData.doubanBase}/v2/movie/in_theaters?star=0&count=3`;
 const comingSoonUrl = `${app.globalData.doubanBase}/v2/movie/coming_soon?star=0&count=3`;
@@ -70,20 +71,44 @@ Page({
 
     },
     getMovieListData: function (url, settedKey, categoryTitle) {
-        let _this=this;
+        let _this = this;
         wx.request({
             url,
-            method:'GET',
-            header:{
-                "content-type":"json"
+            method: 'GET',
+            header: {
+                "content-type": "json"
             },
-            success:function (res) {
+            success: function (res) {
                 console.log(res)
-                // _this.processDoubanData(res.data,settedKey,categoryTitle)
+                _this.processDoubanData(res.data, settedKey, categoryTitle)
             },
-            fail:function (error) {
-              console.log(error)
+            fail: function (error) {
+                console.log(error)
             }
         })
+    },
+    processDoubanData: function (moviesDouban, settedKey, categoryTitle) {
+        let movies = [];
+        moviesDouban.subjects.forEach(subject => {
+            let title = subject.title;
+            if (title.length > 6) {
+                title = title.substring(0, 6) + '...'
+            }
+            let temp = {
+                stars: convertToStarsArray(subject.rating.stars),
+                title: title,
+                average: subject.rating.average,
+                coverageUrl: subject.images.large,
+                movieId: subject.id
+            };
+            movies.push(temp);
+        });
+        let readyData={};
+        readyData[settedKey]={
+            categoryTitle:categoryTitle,
+            movies:movies
+        };
+        this.setData(readyData);
+
     }
 })
