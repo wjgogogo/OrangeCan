@@ -5,7 +5,8 @@
     "pages/post/post-detail/post-detail",
     "pages/post/post-comment/post-comment",
     "pages/movie/movie",
-    "pages/movie/more-movie/more-movie"
+    "pages/movie/more-movie/more-movie",
+    "pages/movie/movie-detail/movie-detail"
   ],
   "window": {
     "navigationBarTitleText": "OrangeCan",

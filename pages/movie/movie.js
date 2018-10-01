@@ -141,5 +141,11 @@ Page({
             searchResult:{},
             inputValue:""
         })
+    },
+    onMovieTap:function (event) {
+        const movieId=event.currentTarget.dataset.movieId;
+        wx.navigateTo({
+            url:`movie-detail/movie-detail?id=${movieId}`
+        })
     }
 })
