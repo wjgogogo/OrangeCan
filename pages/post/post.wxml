@@ -1,14 +1,14 @@
 <import src="post-item/post-item"></import>
 <view>
-    <swiper indicator-dots="true" autoplay="true" circular="true">
+    <swiper catchtap="onSwiperTap" indicator-dots="true" autoplay="true" circular="true">
         <swiper-item>
-            <image src="/images/post/post-1@text.jpg"></image>
+            <image src="/images/post/post-1@text.jpg" data-post-id="3"></image>
         </swiper-item>
         <swiper-item>
-            <image src="/images/post/post-2@text.jpg"></image>
+            <image src="/images/post/post-2@text.jpg" data-post-id="4"></image>
         </swiper-item>
         <swiper-item>
-            <image src="/images/post/post-3@text.jpg"></image>
+            <image src="/images/post/post-3@text.jpg" data-post-id="5"></image>
         </swiper-item>
     </swiper>
     <block wx:for="{{postList}}" wx:for-item="item" wx:for-index="index" wx:key="index">

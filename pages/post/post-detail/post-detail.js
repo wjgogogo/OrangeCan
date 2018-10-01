@@ -9,6 +9,7 @@ Page({
         this.dbPost = new DBPost(postId);
         this.setData({...this.dbPost.getPostItemById()})
         this.addReadingTimes();
+        this.setAnimation();
     },
 
     onReady: function () {
@@ -30,6 +31,17 @@ Page({
             'data.upStatus': data.upStatus,
             'data.upNum': data.upNum
         });
+        this.animationUp.scale(2).step();
+        this.setData({
+            animationUp: this.animationUp.export()
+        });
+        let _this=this;
+        setTimeout(() => {
+            _this.animationUp.scale(1).step();
+            _this.setData({
+                animationUp: _this.animationUp.export()
+            })
+        }, 400);
     },
     onCommentTap: function (event) {
         const id = event.currentTarget.dataset.postId;
@@ -62,5 +74,11 @@ Page({
             title:this.data.data.title,
             path:'/pages/post/post-detail/post-detail'
         }
-    }
+    },
+    setAnimation:function () {
+        let animationUp=wx.createAnimation({
+            timingFunciton:'ease-in-out',
+        });
+        this.animationUp=animationUp;
+    },
 });

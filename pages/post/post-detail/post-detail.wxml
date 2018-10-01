@@ -13,8 +13,8 @@
 </view>
 <view class="tool">
     <view class="tool-item" catchtap="onUpTap" data-post-id="{{data.postId}}">
-        <image wx:if="{{data.upStatus}}" src="/images/icon/wx_app_liked.png"></image>
-        <image wx:else src="/images/icon/wx_app_like.png"></image>
+        <image animation="{{animationUp}}" wx:if="{{data.upStatus}}" src="/images/icon/wx_app_liked.png"></image>
+        <image animation="{{animationUp}}" wx:else src="/images/icon/wx_app_like.png"></image>
         <text>{{data.upNum}}</text>
     </view>
     <view class="tool-item comment" catchtap="onCommentTap" data-post-id="{{data.postId}}">
