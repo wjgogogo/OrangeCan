@@ -187,5 +187,24 @@ Page({
 
             })
         })
+    },
+    showCompass: function () {
+        const _this = this;
+        this.setData({
+            compassHidden: false
+        });
+        wx.onCompassChange(function (res) {
+            console.log(res)
+            if (!_this.data.compassHidden) {
+                _this.setData({
+                    compassVal: res.direction.toFixed(2)
+                })
+            }
+        })
+    },
+    hideCompass: function () {
+        this.setData({
+            compassHidden: true
+        })
     }
 })
