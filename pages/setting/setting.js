@@ -206,5 +206,50 @@ Page({
         this.setData({
             compassHidden: true
         })
+    },
+
+    shake: function () {
+        const _this = this;
+        this.gravityModalConfirm(true);
+        wx.onAccelerometerChange(function (res) {
+            let [x, y, z] = [res.x.toFixed(4), res.y.toFixed(4), res.z.toFixed(4)];
+            let [flagX, flagY, flagZ] = [_this.getDelFlag(x, _this.data.shakeData.x), _this.getDelFlag(y, _this.data.shakeData.y), _this.getDelFlag(z, _this.data.shakeData.z)];
+            _this.data.shakeData = {
+                x: res.x.toFixed(4),
+                y: res.y.toFixed(4),
+                z: res.z.toFixed(4)
+            };
+            if (flagX && flagY || flagX && flagZ || flagY && flagZ) {
+                if (_this.data.shakeInfo.enabled) {
+                    _this.data.shakeInfo.enabled = false;
+                    _this.updateShakeInfo();
+                }
+            }
+        })
+    },
+    gravityModalConfirm: function (flag) {
+        const _this = this;
+        this.setData({
+            shakeInfo: {
+                gravityModalHidden: !_this.data.shakeInfo.gravityModalHidden,
+                num: 0,
+                enabled: flag
+            }
+        })
+    },
+    getDelFlag: function (val1, val2) {
+        return (Math.abs(val1, val2) >= 1)
+    },
+    updateShakeInfo: function () {
+        const _this = this;
+        setTimeout(function () {
+            _this.setData({
+                shakeInfo: {
+                    num: ++_this.data.shakeInfo.num,
+                    enabled: true,
+                    gravityModalHidden: false
+                }
+            })
+        },500);
     }
 })
