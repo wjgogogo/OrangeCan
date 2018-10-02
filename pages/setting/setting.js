@@ -136,5 +136,14 @@ Page({
         wx.navigateTo({
             url:'device/device'
         })
+    },
+    showNetWork:function () {
+        const _this=this;
+        wx.getNetworkType({
+            success:function (res) {
+                let networkType=res.networkType;
+                _this.showModel("网络状态",`你当前的网络：${networkType}`)
+            }
+        })
     }
 })
