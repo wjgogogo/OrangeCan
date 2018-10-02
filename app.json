@@ -7,7 +7,8 @@
     "pages/movie/movie",
     "pages/movie/more-movie/more-movie",
     "pages/movie/movie-detail/movie-detail",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/setting/device/device"
   ],
   "window": {
     "navigationBarTitleText": "OrangeCan",

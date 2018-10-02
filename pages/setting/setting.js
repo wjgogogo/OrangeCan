@@ -131,5 +131,10 @@ Page({
                 }
             })
         })
+    },
+    showSystemInfo:function () {
+        wx.navigateTo({
+            url:'device/device'
+        })
     }
 })
