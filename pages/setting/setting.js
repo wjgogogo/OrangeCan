@@ -115,57 +115,77 @@ Page({
 
     },
     clearCache: function () {
-        this.showModel("缓存清理","确定要清除本地缓存吗？",function () {
+        this.showModel("缓存清理", "确定要清除本地缓存吗？", function () {
             wx.clearStorage({
-                success:function (msg) {
+                success: function (msg) {
                     wx.showToast({
-                        title:"清除缓存完成",
-                        duration:1000,
-                        mask:true,
-                        icon:"suceess"
+                        title: "清除缓存完成",
+                        duration: 1000,
+                        mask: true,
+                        icon: "suceess"
                     })
                 },
-                fail:function (err) {
+                fail: function (err) {
                     console.log(err)
-                    
+
                 }
             })
         })
     },
-    showSystemInfo:function () {
+    showSystemInfo: function () {
         wx.navigateTo({
-            url:'device/device'
+            url: 'device/device'
         })
     },
-    showNetWork:function () {
-        const _this=this;
+    showNetWork: function () {
+        const _this = this;
         wx.getNetworkType({
-            success:function (res) {
-                let networkType=res.networkType;
-                _this.showModel("网络状态",`你当前的网络：${networkType}`)
+            success: function (res) {
+                let networkType = res.networkType;
+                _this.showModel("网络状态", `你当前的网络：${networkType}`)
             }
         })
     },
-    getLonLat:function (callback) {
-        const _this=this;
+    getLonLat: function (callback) {
+        const _this = this;
         wx.getLocation({
-            type:'gcj02',
-            success:function (res) {
-                callback(res.longitude,res.latitude,res.speed);
+            type: 'gcj02',
+            success: function (res) {
+                callback(res.longitude, res.latitude, res.speed);
             }
         })
     },
-    showLonLat:function () {
-        const _this=this;
+    showLonLat: function () {
+        const _this = this;
         this.getLonLat(function (long, lat, speed) {
-            let lonStr=long>=0?"东经":"西经";
-            let latStr=lat>=0?"北纬":"南纬";
+            let lonStr = long >= 0 ? "东经" : "西经";
+            let latStr = lat >= 0 ? "北纬" : "南纬";
             long = long.toFixed(2);
             lat = lat.toFixed(2);
-            lonStr+=long;
-            latStr+=lat;
-            speed=(speed>0?speed:0).toFixed(2);
-            _this.showModel("当前位置和速度",`当前位置：${lonStr}, ${latStr}。 速度：${speed}m/s`)
+            lonStr += long;
+            latStr += lat;
+            speed = (speed > 0 ? speed : 0).toFixed(2);
+            _this.showModel("当前位置和速度", `当前位置：${lonStr}, ${latStr}。 速度：${speed}m/s`)
+        })
+    },
+    showMap: function () {
+        this.getLonLat(function (lon, lat) {
+            wx.openLocation({
+                longitude: lon,
+                latitude: lat,
+                scale: 15,
+                name: "海底捞",
+                address: "XX街XX号",
+                fail: function () {
+                    wx.showToast({
+                        title: "地图打开失败",
+                        duration: 1000,
+                        icon: "cancel"
+                    })
+                }
+
+
+            })
         })
     }
 })
