@@ -98,5 +98,38 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+
+    showModel: function (title, content, callback) {
+        wx.showModal({
+            title,
+            content,
+            confirmColor: "#1f4ba5",
+            cancelColor: "#7f8389",
+            success: function (res) {
+                if (res.confirm) {
+                    callback && callback();
+                }
+            }
+        })
+
+    },
+    clearCache: function () {
+        this.showModel("缓存清理","确定要清除本地缓存吗？",function () {
+            wx.clearStorage({
+                success:function (msg) {
+                    wx.showToast({
+                        title:"清除缓存完成",
+                        duration:1000,
+                        mask:true,
+                        icon:"suceess"
+                    })
+                },
+                fail:function (err) {
+                    console.log(err)
+                    
+                }
+            })
+        })
     }
 })
