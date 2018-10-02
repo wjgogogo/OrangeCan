@@ -145,5 +145,27 @@ Page({
                 _this.showModel("网络状态",`你当前的网络：${networkType}`)
             }
         })
+    },
+    getLonLat:function (callback) {
+        const _this=this;
+        wx.getLocation({
+            type:'gcj02',
+            success:function (res) {
+                callback(res.longitude,res.latitude,res.speed);
+            }
+        })
+    },
+    showLonLat:function () {
+        const _this=this;
+        this.getLonLat(function (long, lat, speed) {
+            let lonStr=long>=0?"东经":"西经";
+            let latStr=lat>=0?"北纬":"南纬";
+            long = long.toFixed(2);
+            lat = lat.toFixed(2);
+            lonStr+=long;
+            latStr+=lat;
+            speed=(speed>0?speed:0).toFixed(2);
+            _this.showModel("当前位置和速度",`当前位置：${lonStr}, ${latStr}。 速度：${speed}m/s`)
+        })
     }
 })
