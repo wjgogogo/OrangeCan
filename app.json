@@ -6,7 +6,8 @@
     "pages/post/post-comment/post-comment",
     "pages/movie/movie",
     "pages/movie/more-movie/more-movie",
-    "pages/movie/movie-detail/movie-detail"
+    "pages/movie/movie-detail/movie-detail",
+    "pages/setting/setting"
   ],
   "window": {
     "navigationBarTitleText": "OrangeCan",
@@ -32,6 +33,11 @@
         "text": "光影",
         "iconPath": "images/icon/wx_app_movie.png",
         "selectedIconPath": "images/icon/wx_app_movie@HL.png"
+      },{
+        "pagePath":"pages/setting/setting",
+        "text": "设置",
+        "iconPath": "images/icon/wx_app_setting.png",
+        "selectedIconPath": "images/icon/wx_app_setting@HL.png"
       }
     ]
   },
