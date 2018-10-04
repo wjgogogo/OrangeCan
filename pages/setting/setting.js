@@ -263,5 +263,10 @@ Page({
                 _this.showModel("扫描二维码/条形码","扫描失败，请重试",false);
             }
         })
+    },
+    downloadDocumentList:function () {
+        wx.navigateTo({
+            url:"document/download/download"
+        })
     }
 })

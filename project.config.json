@@ -35,7 +35,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 7,
 			"list": [
 				{
 					"id": 0,
@@ -78,6 +78,11 @@
 					"name": "setting",
 					"pathName": "pages/setting/setting",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "download",
+					"pathName": "pages/setting/document/download/download"
 				}
 			]
 		}
