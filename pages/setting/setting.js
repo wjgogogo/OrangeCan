@@ -251,5 +251,17 @@ Page({
                 }
             })
         },500);
+    },
+    scanQRCode:function () {
+        const _this=this;
+        wx.scanCode({
+            success:function (res) {
+                console.log(res)
+                _this.showModel("扫描二维码/条形码",res.result,false);
+            },
+            fail:function () {
+                _this.showModel("扫描二维码/条形码","扫描失败，请重试",false);
+            }
+        })
     }
 })
